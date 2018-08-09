@@ -13,12 +13,12 @@ const Search = (props) => {
 					<button
 						className="list-btn"
 						onClick={() => this.toggleDisplayedList()}
-					>List</button>
+					>List </button>
 					<input
 						className="filter-input"
 						type="text"
-						placeholder="Filter locations..."
-						value={0}
+						placeholder="Search Restaurant...."
+						
                     onChange={event => queryUpdate(event.target.value)}/>
             	/>
 				</form>
