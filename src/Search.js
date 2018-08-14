@@ -2,29 +2,25 @@ import React from 'react';
 
 const Search = (props) => {
     const {locations, filteredLocations, currentMarker, selectLocation, queryUpdate} = props; 
-    let locs = filteredLocations === [] ? locations : filteredLocations;   
+    let place = filteredLocations === [] ? locations : filteredLocations;   
     
     return (
         <section className="filter-box">
 				<form
 					className="filter-form"
-					onSubmit={(event) => event.preventDefault()}
 				>
-					<button
-						className="list-btn"
-						onClick={() => this.toggleDisplayedList()}
-					>List </button>
+					
 					<input
 						className="filter-input"
 						type="text"
 						placeholder="Search Restaurant...."
 						
-                    onChange={event => queryUpdate(event.target.value)}/>
+                    onChange={event => queryUpdate(event.target.value)}
             	/>
 				</form>
             <ul>
                 {
-                    locs.map((location, index) => {
+                    place.map((location, index) => {
                         const isSelected = (location.id === currentMarker.id ? 'row-selected' : '');
                         return (
                             <li 

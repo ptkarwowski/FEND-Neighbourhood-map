@@ -1,7 +1,9 @@
 import React from 'react';
 import './App.css';
-import Map from './Map'
+import Map from './Map';
+
 import Search from './Search';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -25,8 +27,8 @@ class App extends React.Component {
   state = {
     locations: [],
     filteredLocations: [],
-    // infoBoxIsOpen: false,
-    currentMarker: ''
+    currentMarker: '',
+    highlightedIcon: null,
   }
 // Adds or clears the state of selectedLocation
 currentMarker = (location) => {
@@ -36,6 +38,7 @@ currentMarker = (location) => {
       });
     } else {
       this.setState({currentMarker: location});
+      
   }
 }
 // Helps to filter the list and updates the state of the filtered locations
@@ -44,8 +47,8 @@ queryUpdate = (value) => {
     let filteredLocations = [];
     const curLocations = currentState.locations;
     if(value !== '') {
-      filteredLocations = curLocations.filter(loc => {
-        return loc.name.toLowerCase().includes(value.toLowerCase());
+      filteredLocations = curLocations.filter(pos => {
+        return pos.name.toLowerCase().includes(value.toLowerCase());
       })
     } else {
       filteredLocations = curLocations;
@@ -53,12 +56,30 @@ queryUpdate = (value) => {
     return({filteredLocations});
   });
 }
-  render() {
+toggleHide = () => {
+  const list = document.querySelector('.filter-box');
+  list.classList.toggle('hidden');
+  const map = document.querySelector('#map');
+  map.classList.toggle('full');
+}
+
+render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">London Restaurant Map</h1>
-        </header>
+      
+      <div>
+
+          <div className='header'>
+                    <a className="burger" onClick={() => this.toggleHide()}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"/>
+                        </svg>
+                    </a>
+
+                    <div className='title'>
+                        <h1>London Restaurant</h1>
+                    </div>
+
+            </div>
         <Map
             locations={this.state.locations}
             filteredLocations={this.state.filteredLocations}

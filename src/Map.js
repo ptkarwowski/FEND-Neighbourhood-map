@@ -29,7 +29,7 @@ class GoogleMaps extends Component {
         });
 
         const infoWindow = new window.google.maps.InfoWindow({
-            maxWidth: 170
+            maxWidth: 190
         });
         this.setState({infoWindow}, (() =>
             this.setState({myMap: mapWindow}, ( () => {
@@ -37,33 +37,36 @@ class GoogleMaps extends Component {
                 const locations = this.props.locations;
                 const theMap = this.state.myMap
                 const bounds = new window.google.maps.LatLngBounds();
-                let markers = locations.map((loc, i) => {
+                let markers = locations.map((pos, i) => {
                     const marker = new window.google.maps.Marker({
                         map: theMap,
-                        position: loc.location,
-                        title: loc.name,
+                        position: pos.location,
+                        title: pos.name,
                         animation: window.google.maps.Animation.DROP,
-                        id: loc.id
+                        id: pos.id
                     });
+                    
                     bounds.extend(marker.position);
                     marker.addListener('click', () => {
                         this.populateInfoWindow(marker, infoWindow, theMap);
                     });
                     return marker
+                    
                 })
                 theMap.fitBounds(bounds);
                 this.setState({markers});
+                
             }))
         ))
     }
-
+    
     //Removes or adds animation to a marker
     isSelected = (marker) => {
         const selectedLoc = this.props.currentMarker;
         const infoWindow = this.state.infoWindow;
         if(marker.id === selectedLoc.id){
             this.populateInfoWindow(marker, infoWindow, this.state.myMap);
-            // setTimeout(() => { infoWindow.close(); }, 2000);
+            setTimeout(() => { infoWindow.close(); }, 4000);
             return window.google.maps.Animation.BOUNCE
         }
         return null
@@ -71,6 +74,8 @@ class GoogleMaps extends Component {
 
     //Make the API call to Foursquare and populates the info window with data
     populateInfoWindow = (marker, infoWindow, theMap) =>{
+        const defaultIcon = marker.getIcon()
+        const {markers, highlightedIcon} = this.state
         infoWindow.setContent('Loading...');
         IdAPIFoursquare.getVenueDetails(marker.id)
             .then(venue => {
@@ -78,6 +83,7 @@ class GoogleMaps extends Component {
                 const infoContent = this.buildInfoWindowContent(vDetails);
                 infoWindow.setContent(infoContent);
                 infoWindow.open(theMap, marker);
+                
             })
             .catch(err => {
                 infoWindow.setContent(`<div><span>There was an error loading this venue's info</span><p>Error: ${err}</p></div>`)
@@ -104,17 +110,17 @@ class GoogleMaps extends Component {
     render() {
         const {filteredLocations} = this.props;
         const markers = this.state.markers
-        let filteredMarkers = markers.filter(mk => {
-            mk.setMap(null);
-            return filteredLocations.some(loc => loc.id === mk.id)
+        let filteredMarkers = markers.filter(mark => {
+            mark.setMap(null);
+            return filteredLocations.some(pos => pos.id === mark.id)
         })
 
         return (
             <div>
                 {
-                    filteredMarkers.forEach( mk => {
-                        mk.setAnimation(this.isSelected(mk));
-                        mk.setMap(this.state.myMap);
+                    filteredMarkers.forEach( mark => {
+                        mark.setAnimation(this.isSelected(mark));
+                        mark.setMap(this.state.myMap);
                     })
                 }
             </div>

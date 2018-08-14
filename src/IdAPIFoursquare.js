@@ -7,11 +7,11 @@ export const getVenueDetails = (venue) =>
         headers: {}
     })
     .then(response => response.json())
-    .then(res => res)
+    .then(respo => respo)
 
 export const getVenueLists = (venue) =>
     fetch(`https://api.foursquare.com/v2/venues/${venue}/listed?client_id=${ClientId}&client_secret=${ClientSecret}&v=${v}`, {
         headers: {}
     })
     .then(response => response.json())
-    .then(res => res)
+    .then(respo => respo)
