@@ -19,13 +19,17 @@ html, body {
   color: #08055a;
   width: 90%;
   text-align: center;
-  
-  /* margin-top: 5px; */
-}
+}  
 
+#map { 
+  width: 70%;
+  position: relative;
+  left: 30%;
+}
 h1 {
   color: white;
   font-size: 1.5em;
+  margin-top: 50px
 }
 
 #map { 
@@ -45,7 +49,7 @@ main, #root {
 .filter-box{
     display: inline-block;
     position: absolute;
-    top: 60px;
+    top: 94px;
     left: 0;
     width: 25%;
     max-width: 250px;
@@ -97,51 +101,13 @@ input[type=text] {
   list-style-position:inside;
 }
 
-.filter-box li:hover {
-  background-color: rgba(57, 57, 197, 0.548);
-}
+
 
 .row-selected {
   background-color: rgba(45, 180, 63, 0.39);
 }
 
-
-
-
-@media screen and (max-width: 641px) {
-  .title {
-    position: absolute;
-  }
-  
-  h1, burger, .search-box {
-    font-size: 16px;
-  }
-
-  .filter-box {
-    top: 36px;
-    width: 22%;
-  }
-
-  .filter-box li {
-    font-size: 14px;
-  }
-
-  #map {
-    left: 22%;
-    width: calc(100% - 22%);
-  }
-}
-
-@media screen and (min-width: 850px) {
-  #map {
-    left: 250px;
-    width: calc(100% - 250px);
-    
-  }
-  .burger svg{
-    display: none;
-  }
-}
+ul { padding:10px } ;
 
 #map.full {
   width: 100%;
@@ -149,8 +115,8 @@ input[type=text] {
 }
 
   .burger svg {
-    width: 32px;
-    fill: red;
+    width: 60px;
+    fill: whitesmoke;
   }
   .burger {
     display: inline-block;
@@ -159,3 +125,73 @@ input[type=text] {
     padding-left: 15px;
     width: 5%
   }
+  
+
+@media screen and (max-width: 641px) {
+  .title {
+    position: absolute;
+  }
+  input[type=text] {
+    font-size: 12px;
+  }
+  h1, burger, .search-box {
+    font-size: 16px;
+  }
+  h1 {
+    color: white;
+    font-size: 1em;
+    margin-top: 20px
+  }
+  .filter-box {
+    top: 65px;
+    width: 30%;
+  }
+
+  .filter-box li {
+    font-size: 14px;
+  }
+
+  #map {
+    left: 21%;
+    width: calc(100% - 21%);
+  }
+    #map.full {
+      width: 100%;
+      left: 0;
+
+  }
+}
+
+@media screen and (min-width: 768px) {
+  input[type=text] {
+    font-size: 12px;
+  }
+  #map {
+    left: 22%;
+    width: calc(100% - 22%);    
+  }    
+  .title {
+    width: 70%
+  }      
+  #map.full {
+    width: 100%;
+    left: 0;        
+    }
+  }  
+
+@media screen and (min-width: 850px) {
+  .burger svg{
+    display: none;
+    
+  }
+  #map {
+    left: 250px;
+    width: calc(100% - 250px);
+  }
+  #map.full {
+      width: 100%;
+      left: 0;
+
+  }
+}
+
