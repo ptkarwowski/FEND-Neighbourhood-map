@@ -54,6 +54,7 @@ queryUpdate = (value) => {
     }
     return({filteredLocations});
   });
+  
 }
 toggleHide = () => {
   const list = document.querySelector('.filter-box');

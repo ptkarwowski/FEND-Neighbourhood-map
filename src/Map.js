@@ -27,10 +27,10 @@ class GoogleMaps extends Component {
             center: { lat: this.props.home.lat, lng: this.props.home.lng },
             zoom: 10
         });
-
         const infoWindow = new window.google.maps.InfoWindow({
             maxWidth: 190
         });
+        
         this.setState({infoWindow}, (() =>
             this.setState({currentMap: mapWindow}, ( () => {
                 const locations = this.props.locations;
@@ -57,12 +57,11 @@ class GoogleMaps extends Component {
                 
             }))
         ))
+        
     }
     
-    //Make the API call to Foursquare and populates the info window with data
+    //Take the API data from Foursquare and populates the info window with data
     populateInfoWindow = (marker, infoWindow, mainMap) =>{
-        const defaultIcon = marker.getIcon()
-        const {markers, highlightedIcon} = this.state
         infoWindow.setContent('Loading...');
         IdAPIFoursquare.getVenueDetails(marker.id)
             .then(venue => {
@@ -73,12 +72,12 @@ class GoogleMaps extends Component {
                 
             })
             .catch(err => {
-                infoWindow.setContent(`<div><span>There was an error loading this venue's info</span><p>Error: ${err}</p></div>`)
+                infoWindow.setContent(`<div><span>Error while Getting Venue Details FourSquareService May Be un reachable or unavailable</span><p>Error: ${err}</p></div>`)
                 infoWindow.open(mainMap, marker);
             })
     };
 
-    // Created the data to be used on the info content, read data from API foursquare
+    // Created the data to the info content
     buildInfoWindowContent = (vDetails) => {
         let content = '<div class="info-window">'
         content += vDetails.name ? `<h3>${vDetails.name}</h3>` : '';

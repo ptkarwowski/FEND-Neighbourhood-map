@@ -1,4 +1,5 @@
 import React from 'react';
+import KeyboardEventHandler from 'react-keyboard-event-handler'
 
 const SearchBar = (props) => {
     const {locations, filteredLocations, currentMarker, selectLocation, queryUpdate} = props; 
