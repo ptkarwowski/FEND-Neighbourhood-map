@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Search = (props) => {
+const SearchBar = (props) => {
     const {locations, filteredLocations, currentMarker, selectLocation, queryUpdate} = props; 
     let place = filteredLocations === [] ? locations : filteredLocations;   
     
@@ -40,4 +40,4 @@ const Search = (props) => {
     );
 }
 
-export default Search;
+export default SearchBar;

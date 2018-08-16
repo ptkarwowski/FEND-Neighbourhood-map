@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Map from './Map';
-import Search from './Search';
+import SearchBar from './SearchBar';
 
 
 class App extends React.Component {
@@ -29,7 +29,7 @@ class App extends React.Component {
     currentMarker: '',
     highlightedIcon: null,
   }
-// Adds or clears the state of selectedLocation
+// Adds or remove the state of current markers
 currentMarker = (location) => {
     if (location.id === this.state.currentMarker.id) {
       this.setState({
@@ -40,7 +40,7 @@ currentMarker = (location) => {
       
   }
 }
-// Helps to filter the list and updates the state of the filtered locations
+// Filter the list and update filtered location
 queryUpdate = (value) => {
   this.setState(currentState => {
     let filteredLocations = [];
@@ -61,7 +61,7 @@ toggleHide = () => {
   const map = document.querySelector('#map');
   map.classList.toggle('full');
 }
-
+// Set up hamburger button, main title,  map, search bar
 render() {
     return (
       
@@ -86,7 +86,7 @@ render() {
             myKey={'AIzaSyCd4edZm7nUOXGYirdXP-DtSE0qU6UELms'}
             home={{ lat: 51.4833148, lng: -0.2171193 }}
           />
-          <Search
+          <SearchBar
             locations={this.state.locations}
             filteredLocations={this.state.filteredLocations}
             currentMarker={this.state.currentMarker}
