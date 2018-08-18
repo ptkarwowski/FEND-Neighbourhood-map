@@ -1,5 +1,4 @@
 import React from 'react';
-import KeyboardEventHandler from 'react-keyboard-event-handler'
 
 const SearchBar = (props) => {
     const {locations, filteredLocations, currentMarker, selectLocation, queryUpdate} = props; 
@@ -24,7 +23,7 @@ const SearchBar = (props) => {
                     place.map((location, index) => {
                         const isSelected = (location.id === currentMarker.id ? 'row-selected' : '');
                         return (
-                            <li 
+                            <li role="list"
                                 key={index} 
                                 onClick={ () => selectLocation(location)}
                                 onKeyDown={(event) => event.keyCode !== 13 || selectLocation(location)}

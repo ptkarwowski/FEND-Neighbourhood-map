@@ -13,11 +13,12 @@ The requirements:
  - Clicking on a marker shows something about the place 
  - Include a service worker (Used react's default)
 
-# How to run the project
+# How to run the project in procuction mode
 
-Clone the repository and to run:
+Clone the repository and to run by using the following commands:
 
 1. npm install
 
 2. npm start
 
+3. And then visit localhost:3000
