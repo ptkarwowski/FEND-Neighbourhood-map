@@ -19,6 +19,10 @@ class GoogleMaps extends Component {
         scriptElement.src = `https://maps.googleapis.com/maps/api/js?key=${this.props.myKey}&v=3&callback=initMap`;
         bodyEl.appendChild(scriptElement);
         window.initMap = this.initMap;
+        document.head.append(scriptElement);
+        scriptElement.onerror = function() {
+        alert("Error loading " + this.src); 
+          };
     }
     
     // Initializes the map,info window and all  markers
@@ -122,6 +126,7 @@ class GoogleMaps extends Component {
                 }
             </div>
         );
+        
     }
 }
 

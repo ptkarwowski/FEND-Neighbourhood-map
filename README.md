@@ -14,6 +14,7 @@ The requirements:
  - Include a service worker (Used react's default)
 
 # How to run the project in procuction mode
+The service worker is implemented only in the production build.
 
 Clone the repository and to run by using the following commands:
 
@@ -21,4 +22,6 @@ Clone the repository and to run by using the following commands:
 
 2. npm start
 
-3. And then visit localhost:3000
+3. And then navigate to  localhost:3000
+
+You can check internet connetion in consol log message. If there is no conection, the message appear "Google Map error. There is no internet connetion"

@@ -21,6 +21,13 @@ class App extends React.Component {
     ];
 
     this.state.filteredLocations = this.state.locations;
+    // Detecting internet connection and send alert
+    let isOnline = window.navigator.onLine;
+    if (isOnline) {
+      console.log('internet online');
+    } else {
+      alert("Google Map error. There is no internet connetion");
+    }
   }
 
   state = {
@@ -98,5 +105,6 @@ render() {
       </div>
     );
   }
+  
 };
 export default App;
